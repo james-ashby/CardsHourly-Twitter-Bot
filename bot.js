@@ -3,6 +3,7 @@ console.log('The bot is starting...');
 var Twit = require('twit');                                                                 //Required gubbins for node package 'Twit'
 var config = require('./config');                                                           //^^
 var fs = require('fs'), request = require('request');                                       //Required for using FileStream 
+const { time } = require('console');
 
 var download = function(url, filename, callback)                                            //Download function for saving the image from the API Url
 {
@@ -24,6 +25,7 @@ var pokeArtist;
 var pokeSeries;
 startCardsHourlyBot();                                                           //Initial run of 
 setInterval(startCardsHourlyBot, 1000*60*60);                                     //Set the time between each post (1000*60 = 1 Minute, 1000*60*60 = 60 Minutes/1 Hour)
+setInterval(timeOutput, 1000*60*10);
 function startCardsHourlyBot(){
     async function getPokemonCard()
     {
@@ -44,7 +46,7 @@ function startCardsHourlyBot(){
         pokeID = cards[randomCardPicker].id;                                     //Store set ID (IMPORTANT - Unique identifier for each and every card)
         pokeSet = cards[randomCardPicker].set;                                   //Store the name of the expansion the card is from
         pokeArtist = cards[randomCardPicker].artist;                             //Store the name of the card's Artist
-        
+        pokeSeries = cards[randomCardPicker].series;
         var imageUrl = cards[randomCardPicker].imageUrlHiRes;                    //Store the high resolution Image url 
 
         //Outputting variables to console to verify
@@ -77,7 +79,7 @@ function sendTweet()
 
             var tweet = 
                 {
-                    status: pokemonName + " from the '" + pokeSet + "'  set!  \n" + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon", media_ids: [id]
+                    status: createStatusText(pokeSeries, pokeArtist, pokeSet, pokemonName), media_ids: [id]
                 }
 
             T.post('statuses/update', tweet, tweeted);
@@ -97,4 +99,24 @@ function sendTweet()
                 console.log('Tweet posted')
             }
     } 
+}
+function timeOutput()
+{
+    console.log("10 minutes have passed.");
+}
+var createStatusText = function(pokeSeries, pokeArtist, pokeSet,pokemonName) // Create different status formatting depending on the expansion of the card
+{
+    if (pokeSeries == pokeSet)
+    {
+        var statusText = pokemonName + " from the '" + pokeSeries + "' base set! \n " + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+    }
+    else if (pokeSet.includes("Promos"))
+    {
+        var statusText = pokemonName + " from '" + pokeSet + "'! \n " + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+    }
+    else
+    {
+        var statusText = pokemonName + " from the '" + pokeSet + "'  set!  \n" + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+    }
+    return statusText;
 }
