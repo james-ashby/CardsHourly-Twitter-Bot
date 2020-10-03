@@ -1,0 +1,21 @@
+{
+  "name": "npm_demo",
+  "version": "1.0.0",
+  "description": "I am demonstrating npm",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pokemon"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "https": "^1.0.0",
+    "node-fetch": "^2.6.1",
+    "pokemontcgsdk": "^1.1.0",
+    "twit": "^2.2.11"
+  }
+}
