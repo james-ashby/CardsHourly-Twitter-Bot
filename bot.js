@@ -53,7 +53,7 @@ function startCardsHourlyBot(){
         console.log(pokemonName);                                                
         console.log(randomDexNumber);                                            
         console.log(totalCards);                                                 
-        fileUrl = 'images/' + pokeID + '.png';
+        fileUrl = pokeID + '.png';
         download(imageUrl, fileUrl, function(){
             console.log(pokemonName + " ID : " + pokeID + " image successfully saved."); //Download and Save the image at the imageUrl with the name of the unique ID
         });
@@ -62,6 +62,8 @@ function startCardsHourlyBot(){
     getPokemonCard();            // Run the get Pokemon function to download and store the image of the Pokemon card
     setTimeout(sendTweet, 5000); // Run the send tweet function after 5 seconds (to allow the image to download)
 }
+
+// 'images/' +  Line 56
 function sendTweet()
 {
     var filename = fileUrl;
