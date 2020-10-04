@@ -116,7 +116,7 @@ var createStatusText = function(pokeSeries, pokeArtist, pokeSet,pokemonName) // 
     }
     else
     {
-        var statusText = pokemonName + " from the '" + pokeSet + "' set!  \n" + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+        var statusText = pokemonName + " from the '" + pokeSeries + ": " + pokeSet + "' set!  \n" + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
     }
     return statusText;
 }
