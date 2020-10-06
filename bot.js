@@ -40,6 +40,11 @@ function startCardsHourlyBot(){
         var totalCards = cards.length;                                           //Store the amount of cards there are for that species of Pokemon
         var randomCardPicker = Math.floor(Math.random()*totalCards);             //Choose a random card from the amount of cards of that Pokemon
 
+        while (cardDoesNotExist(randomDexNumber, randomCardPicker))              //If the selected card does not exist on the API's database, randomize again from the same pokemon
+        {
+            randomCardPicker = Math.floor(Math.random()*totalCards); 
+        }
+
         // Assigning variables                                                                    
 
         pokemonName = cards[randomCardPicker].name;                              //Store the Pokemon name
@@ -121,4 +126,58 @@ var createStatusText = function(pokeSeries, pokeArtist, pokeSet,pokemonName) // 
         var statusText = pokemonName + " from the '" + pokeSeries + ": " + pokeSet + "' set!  \n" + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
     }
     return statusText;
+}
+function cardDoesNotExist(dexNum, cardNumber)
+{
+    switch (dexNum)
+    {
+        case 1:          if (cardNumber == 17) { return true; }   break;
+        case 6:          if (cardNumber == 48) { return true; }      break;   
+        case 25:         if (cardNumber == 76 || cardNumber == 92) { return true; }      break;
+        case 54:         if (cardNumber == 20) { return true; }      break;
+        case 106:        if (cardNumber == 9) { return true; }      break;
+        case 107:        if (cardNumber == 15) { return true; }      break;
+        case 136:        if (cardNumber == 24) { return true; }      break;
+        case 137:        if (cardNumber == 16) { return true; }      break;
+        case 144:        if (cardNumber == 28) { return true; }      break;
+        case 149:        if (cardNumber == 27) { return true; }      break;
+        case 150:        if (cardNumber == 39 || cardNumber == 51) { return true; }      break;
+        case 151:        if (cardNumber == 27) { return true; }      break;
+        case 190:        if (cardNumber == 9) { return true; }      break;
+        case 209:        if (cardNumber == 14) { return true; }      break;
+        case 230:        if (cardNumber == 17) { return true; }      break;
+        case 233:        if (cardNumber == 10) { return true; }      break;
+        case 243:        if (cardNumber == 19) { return true; }      break;
+        case 244:        if (cardNumber == 22) { return true; }      break;
+        case 245:        if (cardNumber == 20) { return true; }      break;
+        case 251:        if (cardNumber == 21) { return true; }      break;
+        case 312:        if (cardNumber == 14) { return true; }      break;
+        case 319:        if (cardNumber == 17) { return true; }      break;
+        case 323:        if (cardNumber == 18) { return true; }      break;
+        case 380:        if (cardNumber == 16) { return true; }      break;
+        case 381:        if (cardNumber == 20) { return true; }      break;
+        case 383:        if (cardNumber == 12) { return true; }      break;
+        case 385:        if (cardNumber == 18) { return true; }      break;
+        case 445:        if (cardNumber == 10) { return true; }      break;
+        case 448:        if (cardNumber == 20) { return true; }      break;
+        case 470:        if (cardNumber == 11) { return true; }      break;
+        case 471:        if (cardNumber == 5) { return true; }      break;
+        case 490:        if (cardNumber == 10) { return true; }      break;
+        case 491:        if (cardNumber == 5) { return true; }      break;
+        case 492:        if (cardNumber == 2) { return true; }      break;
+        case 493:        if (cardNumber == 19) { return true; }      break;
+        case 494:        if (cardNumber == 14) { return true; }      break;
+        case 647:        if (cardNumber == 8) { return true; }      break;
+        case 648:        if (cardNumber == 9) { return true; }      break;
+        case 649:        if (cardNumber == 10) { return true; }      break;
+        case 658:        if (cardNumber == 12) { return true; }      break;
+        case 702:        if (cardNumber == 1) { return true; }      break;
+        case 721:        if (cardNumber == 5) { return true; }      break;
+        case 801:        if (cardNumber == 6) { return true; }      break;
+        case 802:        if (cardNumber == 4) { return true; }     break;
+        case 804:        if (cardNumber == 7) { return true; }      break;
+        case 806:        if (cardNumber == 5) { return true; }      break;
+        case 866:        return true;        
+        default:      return false;
+    }
 }
