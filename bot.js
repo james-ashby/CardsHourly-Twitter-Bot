@@ -113,17 +113,26 @@ function timeOutput()
 }
 var createStatusText = function(pokeSeries, pokeArtist, pokeSet,pokemonName) // Create different status formatting depending on the expansion of the card
 {
+    var artistString;
+    if (pokeArtist == null)
+    {
+        artistString = "\n #PokemonTCG #PokemonCards #Pokemon";
+    }    
+    else
+    {
+         artistString = "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon"
+    }
     if (pokeSeries == pokeSet)
     {
-        var statusText = pokemonName + " from the '" + pokeSeries + "' base set! \n " + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+        var statusText = pokemonName + " from the '" + pokeSeries + "' base set! \n " + artistString;
     }
     else if (pokeSet.includes("Promos"))
     {
-        var statusText = pokemonName + " from '" + pokeSet + "'! \n " + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+        var statusText = pokemonName + " from '" + pokeSet + "'! \n " + artistString;
     }
     else
     {
-        var statusText = pokemonName + " from the '" + pokeSeries + ": " + pokeSet + "' set!  \n" + "\n\nArtwork by: " + pokeArtist + "\n #PokemonTCG #PokemonCards #Pokemon";
+        var statusText = pokemonName + " from the '" + pokeSeries + ": " + pokeSet + "' set!  \n" + artistString;
     }
     return statusText;
 }
