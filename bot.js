@@ -130,6 +130,10 @@ var createStatusText = function(pokeSeries, pokeArtist, pokeSet,pokemonName) // 
     {
         var statusText = pokemonName + " from '" + pokeSet + "'! \n " + artistString;
     }
+    else if (pokeSet.includes(pokeSeries) || pokeSeries.includes("Base"))
+    {
+        var statusText = pokemonName + " from '" + pokeSet + "' set! \n" + artistString;
+    }
     else
     {
         var statusText = pokemonName + " from the '" + pokeSeries + ": " + pokeSet + "' set!  \n" + artistString;
